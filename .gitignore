@@ -35,5 +35,3 @@ sftp-config.json
 .ftppass
 *.zip
 src/node_modules/*
-
-composer.json
