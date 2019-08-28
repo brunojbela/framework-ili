@@ -31,7 +31,7 @@
                         <?php bloginfo( 'name' ); ?>
                     </a>
                 </p>
-                <a href="http://www.agenciamestre.com/" target="_blank" title="Agência Ili - Marketing Digital: SEO, Links Patrocinados, Facebook Ads e outros" rel="nofollow">
+                <a href="//agenciaili.com.br/" target="_blank" title="Agência Ili - Marketing Digital: SEO, Links Patrocinados, Facebook Ads e outros" rel="nofollow">
                     <figure class="col-xs-12 col-sm-2">
                         <img src="<?php echo CONTENT_URI . '/assets/images/logo-agencia-ili.png'; ?>" alt="Agência Ili - Marketing Digital: SEO, Links Patrocinados, Facebook Ads e outros" title="Agência Ili - Marketing Digital: SEO, Links Patrocinados, Facebook Ads e outros">
                     </figure>
