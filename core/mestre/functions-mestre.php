@@ -1,4 +1,4 @@
-<?php 
+<?php
     function listar_posts($nPosts, $postType, $listarPor, $class) {
         if($listarPor != 'views'): $order = "'orderby'=>".$listarPor; else: $order = "v_sortby=views"; endif;
         $args = array (
@@ -33,42 +33,22 @@
         foreach($categories as $category) {
             echo '<li><a href="' . get_category_link( $category->term_id ) . '" title="' . sprintf( __( "%s" ), $category->name ) . '" ' . '>' . $category->name.'</a></li>';
         }
-        echo '</ul>';                          
+        echo '</ul>';
 }
 
-    function menu_personalizado($menu) {
-        register_nav_menus(
-            array(
-				$menu => __( $menu, 'odin' )
-			)
-		);
-        wp_nav_menu(
-            array(
-                'theme_location' => $menu,
-                'depth'          => 2,
-                'container'      => false,
-                'menu_class'     => 'nav footer-nav',
-                'fallback_cb'    => 'Odin_Bootstrap_Nav_Walker::fallback',
-                'walker'         => new Odin_Bootstrap_Nav_Walker()
-            )
-        );
-    }
-
-    function posts_realcionados($nPosts, $class) {
+    function posts_realcionados($nPosts, $class, $postID) {
         $categories = get_the_category();
         $cat = $categories['0']->cat_ID;
-        
-        $query_relacionados = new WP_Query(array( 
+
+        $query_relacionados = new WP_Query(array(
         'cat' => $cat,
-        'posts_per_page' => $nPosts, 
-        'post__not_in' => array( $post->ID ),
+        'posts_per_page' => $nPosts,
+        'post__not_in' => array($postID)
         ));
 
-        while($query_relacionados->have_posts()):$query_relacionados->the_post();        
-        
-        echo '<div class="'.$class.'">';
-        echo '<figure><a href="'.get_the_permalink().'"><img src="'.get_the_post_thumbnail_url().'" alt="'.get_the_title().'" title="'.get_the_title().'"></a></figure>';
-        echo '<h3><a href="'.get_the_permalink().'">'.get_the_title().'</a></h3>';
-        echo '</div>';
+        while($query_relacionados->have_posts()):$query_relacionados->the_post();
+        	echo '<div class="'. $class .'">';
+				get_template_part('content', 'excerpt');
+			echo '</div>';
         endwhile; wp_reset_query();
     }

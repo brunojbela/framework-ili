@@ -52,5 +52,4 @@ get_header(); ?>
     <!-- #content -->
 
     <?php
-get_sidebar();
 get_footer();

@@ -7,27 +7,39 @@
  */
 
 get_header(); ?>
+<main class="error">
+	<div class="error-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 ">
+					<div class="error-text">
+						<h1 class="error"><?php _e('404 Error') ?></h1>
+						<div class="im-sheep">
+							<div class="top">
+								<div class="body"></div>
+								<div class="head">
+									<div class="im-eye one"></div>
+									<div class="im-eye two"></div>
+									<div class="im-ear one"></div>
+									<div class="im-ear two"></div>
+								</div>
+							</div>
+							<div class="im-legs">
+								<div class="im-leg"></div>
+								<div class="im-leg"></div>
+								<div class="im-leg"></div>
+								<div class="im-leg"></div>
+							</div>
+						</div>
+						<h4><?php _e('Oops! This page Could Not Be Found!') ?></h4>
+						<p> <?php _e('Sorry bit the page you are looking for does not exist, have been removed or name changed.') ?></p>
+						<a href="<?php echo esc_url(home_url('/')); ?>"
+						   class="btn btn-primary btn-round"> <?php _e('Go to homepage') ?></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
 
-    <main id="content" class="error" tabindex="-1" role="main">
-        <div class="container">
-            <div class="row">
-                <header class="page-header">
-                    <h1 class="page-title">
-                        <?php _e( 'Not Found', 'odin' ); ?>
-                    </h1>
-                </header>
-
-                <div class="page-content">
-                    <p>
-                        <?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'odin' ); ?>
-                    </p>
-
-                    <?php get_search_form(); ?>
-                </div>
-                <!-- .page-content -->
-            </div>
-        </div>
-    </main>
-    <!-- #main -->
-
-    <?php get_footer(); ?>
+<?php get_footer(); ?>

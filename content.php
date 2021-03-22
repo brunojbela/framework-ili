@@ -9,29 +9,21 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-			if ( is_single() ) :
-				the_title( '<h1 class="entry-title">', '</h1>' );
-			else :
-				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-			endif;
-		?>
+<article id="post-<?php the_ID(); ?>" <?php post_class('pb-5'); ?>>
+	<header class="entry-header pb-3">
+		<figure>
+			<?php echo get_the_post_thumbnail(); ?>
+		</figure>
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 			<div class="entry-meta">
 				<?php odin_posted_on(); ?>
-			</div><!-- .entry-meta -->
+			</div>
 		<?php endif; ?>
-	</header><!-- .entry-header -->
+	</header>
 
-	<?php if ( is_search() ) : ?>
-		<div class="entry-summary">
-			<?php the_excerpt(); ?>
-		</div><!-- .entry-summary -->
-	<?php else : ?>
-		<div class="entry-content">
+		<div class="entry-content pb-3">
 			<?php
 				the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'odin' ) );
 				wp_link_pages( array(
@@ -42,7 +34,6 @@
 				) );
 			?>
 		</div><!-- .entry-content -->
-	<?php endif; ?>
 
 	<footer class="entry-meta">
 		<?php if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) ) : ?>

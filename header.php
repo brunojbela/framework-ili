@@ -8,83 +8,60 @@
  * @since 2.2.0
  */
 ?>
-    <!DOCTYPE html>
-    <html class="no-js" <?php language_attributes(); ?>>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
 
-    <head>
-        <meta charset="<?php bloginfo( 'charset' ); ?>" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="profile" href="http://gmpg.org/xfn/11" />
-        <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-        <?php if ( ! get_option( 'site_icon' ) ) : ?>
-        <link href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.ico" rel="shortcut icon" />
-        <?php endif; ?>
-        <?php wp_head(); ?>
-    </head>
+<head>
+	<meta charset="<?php bloginfo('charset'); ?>"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="profile" href="http://gmpg.org/xfn/11"/>
+	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>"/>
+	<?php wp_head(); ?>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
-    <body <?php body_class(); ?>>
-        <a id="skippy" class="sr-only sr-only-focusable" href="#content">
-            <div class="container">
-                <span class="skiplink-text"><?php _e( 'Skip to content', 'odin' ); ?></span>
-            </div>
-        </a>
-        <header id="header" role="banner">
-            <div class="container">
-                <div class="row">
-                    <div class="page-header hidden-xs col-xs-12">
-                        <div class="logo">
-                            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-							<img src="" alt="<?php bloginfo( 'name' ); ?>" title="<?php bloginfo( 'name' ); ?>">
-						</a>
-                        </div>
-                    </div>
-                    <!-- .page-header-->
-                    <div id="main-navigation" class="navbar navbar-default col-xs-12">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-navigation">
-					<span class="sr-only"><?php _e( 'Toggle navigation', 'odin' ); ?></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-                        </div>
-                        <nav class="collapse navbar-collapse navbar-main-navigation" role="navigation">
-                            <?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'main-menu',
-								'depth'          => 2,
-								'container'      => false,
-								'menu_class'     => 'nav navbar-nav',
-								'fallback_cb'    => 'Odin_Bootstrap_Nav_Walker::fallback',
-								'walker'         => new Odin_Bootstrap_Nav_Walker()
-							)
-						);
-					?>
-                                <form method="get" class="navbar-form navbar-right" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
-                                    <label for="navbar-search" class="sr-only">
-							         <?php _e( 'Search:', 'odin' ); ?>
-						        </label>
-                                    <div class="form-group">
-                                        <input type="search" value="<?php echo get_search_query(); ?>" class="form-control" name="s" id="navbar-search" />
-                                    </div>
-                                    <button type="submit" class="btn btn-default"><?php _e( 'Search', 'odin' ); ?></button>
-                                </form>
-                        </nav>
-                        <!-- .navbar-collapse -->
-                    </div>
-                    <!-- #main-navigation-->
-                </div>
-            </div>
-            <!-- .container-->
-        </header>
-        <!-- #header -->
-        <?php if(!is_home() || !is_front_page()): ?>
-        <section class="breadcrumb">
-            <div class="container">
-                <div class="row">
-                    <?php get_template_part('core/mestre/breadcrumb' ); ?>
-                </div>
-            </div>
-        </section>
-        <?php endif; ?>
+<body <?php body_class(); ?>>
+<header id="header">
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+		<div class="container">
+			<a class="navbar-brand logo" href="<?php echo esc_url(home_url('/')); ?>"
+			   title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
+				<img class="lazy-load" src="//via.placeholder.com/150x40" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'main-menu',
+						'depth' => 2,
+						'container' => false,
+						'menu_class' => 'navbar-nav mr-auto',
+						'fallback_cb' => 'Odin_Bootstrap_Nav_Walker::fallback',
+						'walker' => new Odin_Bootstrap_Nav_Walker()
+					)
+				);
+				?>
+				<form method="get" class="form-inline my-2 my-lg-0" action="<?php echo esc_url(home_url('/')); ?>"
+					  role="search">
+					<input class="form-control mr-sm-2" name="s" type="search" placeholder="<?php _e('Search:', 'odin'); ?>"
+						   value="<?php echo get_search_query(); ?>" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0"
+							type="submit"><?php _e('Search', 'odin'); ?></button>
+				</form>
+			</div>
+		</div>
+	</nav>
+</header>
+<!-- #header -->
+<?php if (!is_home() || !is_front_page()): ?>
+	<section class="breadcrumb">
+		<div class="container">
+			<?php get_template_part('core/mestre/breadcrumb'); ?>
+		</div>
+	</section>
+<?php endif; ?>
